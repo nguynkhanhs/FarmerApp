@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 const Container = () => {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="TabNavigation"
+            <Stack.Navigator initialRouteName="Splash"
                 screenOptions={{
                     headerTransparent: true,
                     headerTitle: false,
