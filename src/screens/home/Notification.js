@@ -61,50 +61,52 @@ const Notification = () => {
         )
     }
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.title_wrapper}>
-                <Text style={styles.title_text}>Thông báo</Text>
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate('DiaryStack')
-                    }}
+    if(data.length > 0) {
+        return (
+            <View style={styles.container}>
+                <View style={styles.title_wrapper}>
+                    <Text style={styles.title_text}>Thông báo</Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('DiaryStack')
+                        }}
+                    >
+                        <Text style={{ color: '#666' }}>
+                            Xem thêm
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <FlatList
+                    data={data}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    showsVerticalScrollIndicator={false}
+                    ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#ccc', marginBottom: 5 }}></View>}
+                    style={styles.main_content}
                 >
-                    <Text style={{ color: '#666' }}>
-                        Xem thêm
-                    </Text>
-                </TouchableOpacity>
+                </FlatList>
+                <NotiModal
+                    modalState={firstMission}
+                    setModalState={setFirstMission}
+                    doneModalState={doneModal}
+                    setDoneModalState={setDoneModal}
+                ></NotiModal>
+                <NotiModal
+                    modalState={secondMission}
+                    setModalState={setSecondMission}
+                    doneModalState={doneModal}
+                    setDoneModalState={setDoneModal}
+                ></NotiModal>
+                <DoneModal
+                    modalState={doneModal}
+                    setModalState={setDoneModal}
+                    data={data}
+                    setData={setData}
+                    currentMission={currentMission}
+                ></DoneModal>
             </View>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-                showsVerticalScrollIndicator={false}
-                ItemSeparatorComponent={() => <View style={{ height: 1, backgroundColor: '#ccc', marginBottom: 5 }}></View>}
-                style={styles.main_content}
-            >
-            </FlatList>
-            <NotiModal
-                modalState={firstMission}
-                setModalState={setFirstMission}
-                doneModalState={doneModal}
-                setDoneModalState={setDoneModal}
-            ></NotiModal>
-            <NotiModal
-                modalState={secondMission}
-                setModalState={setSecondMission}
-                doneModalState={doneModal}
-                setDoneModalState={setDoneModal}
-            ></NotiModal>
-            <DoneModal
-                modalState={doneModal}
-                setModalState={setDoneModal}
-                data={data}
-                setData={setData}
-                currentMission={currentMission}
-            ></DoneModal>
-        </View>
-    )
+        ) 
+    } else return false
 }
 
 const styles = StyleSheet.create({

@@ -128,7 +128,7 @@ const DoneModal = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#eee',
+        backgroundColor: '#fff',
         alignItems: 'center',
         paddingVertical: 30,
         borderRadius: 5

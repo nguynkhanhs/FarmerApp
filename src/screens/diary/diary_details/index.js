@@ -1,15 +1,30 @@
 import React from 'react';
-import { Image, StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 
 const DiaryDetails = ({ route }) => {
 
     var data = route.params
     var dataProcess = route.params.process
 
+    const createTwoButtonAlert = (data) =>
+        Alert.alert(
+            data.action,
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet explicabo, voluptates fugiat ipsam pariatur facilis molestias, error in voluptatum necessitatibus velit quae fugit adipisci modi aliquid cum ab, aliquam exercitationem.",
+            [
+                { text: "OK", onPress: () => false }
+            ],
+            { cancelable: false }
+        );
+
+
+
     let renderItem = ({ item }) => {
         return (
             <TouchableOpacity
-                style={[styles.item_wrapper, {backgroundColor: item.status == 'work' ? 'rgba(108, 255, 169, .7)' : 'transparent'}]}
+                style={[styles.item_wrapper, { backgroundColor: item.status == 'work' ? 'rgba(108, 255, 169, .7)' : 'transparent' }]}
+                onPress={()=>{
+                    createTwoButtonAlert(item)
+                }}
             >
                 <Text style={styles.item_day}>{item.day}</Text>
                 <View style={styles.item_infor}>

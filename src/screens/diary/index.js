@@ -19,7 +19,6 @@ const Diary = () => {
         setData(newData)
     }
 
-
     let renderItem = ({ item }) => {
         return (
             <TouchableOpacity
